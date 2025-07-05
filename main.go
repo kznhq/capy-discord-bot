@@ -26,6 +26,8 @@ func main() {
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Failed to load .env: ", err) 
+	} else {
+		fmt.Println(".env loaded")
 	}
 
 	discordToken := os.Getenv("DISCORD_TOKEN")
@@ -37,6 +39,8 @@ func main() {
 	err = client.Open()
 	if err != nil {
 		fmt.Println("Error opening connection: ", err) 
+	} else {
+		fmt.Println("Connection opened")
 	}
 	defer client.Close()
 
