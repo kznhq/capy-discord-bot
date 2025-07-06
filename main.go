@@ -1,6 +1,6 @@
 package main
 
-//test6
+//test7
 import (
 	// "bufio"
 	// "log"
