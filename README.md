@@ -5,7 +5,8 @@ Jenkins CI/CD also set up.
 
 ## Current Functionality:
 - runs
+- basic commands
+    - !pet : nice way to thank capy
 
 ## Desired Future Functionality:
-- basic slash commands
 - react to message for role assignment

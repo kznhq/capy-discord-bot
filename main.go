@@ -12,7 +12,7 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
+func petCommand(s *discordgo.Session, m *discordgo.MessageCreate) {
 	if m.Author.Bot {
 		return
 	}
@@ -23,19 +23,22 @@ func messageCreate(s *discordgo.Session, m *discordgo.MessageCreate) {
 }
 
 func main() {
+	// need the token to get the client for the bot
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Failed to load .env: ", err) 
 	} else {
 		fmt.Println(".env loaded")
 	}
-
 	discordToken := os.Getenv("DISCORD_TOKEN")
 
+	// make a client
 	client, err := discordgo.New("Bot " + discordToken)
 
-	client.AddHandler(messageCreate)
+	// add your handlers (keeping one per command for cleanliness)
+	client.AddHandler(petCommand)
 
+	// open the client
 	err = client.Open()
 	if err != nil {
 		fmt.Println("Error opening connection: ", err) 
@@ -44,8 +47,8 @@ func main() {
 	}
 	defer client.Close()
 
+	// ctrl c
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
 	<-stop
-
 }
