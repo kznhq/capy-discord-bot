@@ -36,7 +36,7 @@ func main() {
 	// add your handlers (keeping one per command for cleanliness)
 	client.AddHandler(petCommand)
 
-	// open the client
+	// open the connection
 	err = client.Open()
 	if err != nil {
 		fmt.Println("Error opening connection: ", err) 
@@ -45,7 +45,7 @@ func main() {
 	}
 	defer client.Close()
 
-	// ctrl c
+	// doing ctrl c will stop the bot and make it go offline
 	stop := make(chan os.Signal, 1)
 	signal.Notify(stop, os.Interrupt, syscall.SIGTERM)
 	<-stop
