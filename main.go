@@ -1,8 +1,6 @@
 package main
 
 import (
-	// "bufio"
-	// "log"
 	"fmt"
 	"os"
 	"os/signal"
