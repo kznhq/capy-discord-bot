@@ -4,4 +4,5 @@
 # my executable's name
 capyDiscordBot
 
+# AWS 
 *.pem

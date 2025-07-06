@@ -1,6 +1,5 @@
 package main
 
-//test9
 import (
 	// "bufio"
 	// "log"
