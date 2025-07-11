@@ -21,26 +21,77 @@ func newMessage(session *discordgo.Session, message *discordgo.MessageCreate) {
 
 	// Respond to messages
 	switch {
-	case strings.Contains(message.Content, "!react4roles"):
-		if message.Content[0:12] != "!react4roles" { break } //command appeared somewhere besides the front
-		react4rolesCommand(session, message)
+	case strings.Contains(message.Content, "!react4role"):
+		if message.Content[0:11] != "!react4role" { break } //command appeared somewhere besides the front
+		react4roleCommand(session, message)
 	case message.Content == "!pet" :
 		session.ChannelMessageSend(message.ChannelID, "*hapy capy noises*")
+	case strings.Contains(message.Content, "!deleteRole"):
+		if message.Content[0:11] != "!deleteRole" { break } //command appeared somewhere besides the front
+		deleteRole(session, message, message.Content)
 	}
 }
 
-//Command: !react4roles <role name>
-func react4rolesCommand(session *discordgo.Session, message *discordgo.MessageCreate) {
-	// get the name of the role
-	roleName := message.Content[12:]
-	session.ChannelMessageSend(message.ChannelID, "React for role: " + roleName)
-	fmt.Println(session.MessageReactions)
+func deleteRole (session *discordgo.Session, message *discordgo.MessageCreate, content string) {
+	roleToDelete := content[12:] //content[11] is a space character
+	if roleToDelete == ""{
+		session.ChannelMessageSend(message.ChannelID, "Error: No role name detected. Usage: !deleteRole <roleName>")
+	}
+
+	for _, value := range roleAssigningMessages { // value is (role name, role id)
+		if value[0] == roleToDelete {
+			session.GuildRoleDelete(message.GuildID, value[1])
+			session.ChannelMessageSend(message.ChannelID, "Role " + roleToDelete + " deleted")
+			return
+		}
+	}
+	session.ChannelMessageSend(message.ChannelID, "Error: couldn't find role " + roleToDelete + " to delete. Either I didn't make it or it doesn't exist")
 }
 
-// TODO: handle reactions to the react4roles bot response message
-func react4rolesReactionHandler(session *discordgo.Session, reaction *discordgo.MessageReactionAdd) {
-	fmt.Println(reaction.UserID)
+//Command: !react4roles <role name>
+func react4roleCommand(session *discordgo.Session, message *discordgo.MessageCreate) {
+	// get the name of the role
+	roleName = message.Content[12:] //message.Content[11] is the space character
+	if roleName == "" { // (Discord shaves off trailing spaces when sending a message)
+		session.ChannelMessageSend(message.ChannelID, "No role name detected. Usage: !react4role <roleName>")
+	}
+
+	msg, _ := session.ChannelMessageSend(message.ChannelID, "React for role: " + roleName)
+	color := 0x208470
+	hoist := false
+	permissions := int64(discordgo.PermissionViewChannel)
+	mentionable := true
+	params := &discordgo.RoleParams{
+		Name: roleName,
+		Color: &color,
+		Hoist: &hoist,
+		Permissions: &permissions,
+		Mentionable: &mentionable,
+	}
+	role, _ = session.GuildRoleCreate(message.GuildID, params)
+	roleAssigningMessages[msg.ID] = [2]string{roleName, string(role.ID)}
 }
+
+func react4roleReactionAddHandler(session *discordgo.Session, reaction *discordgo.MessageReactionAdd) {
+	if _, ok := roleAssigningMessages[reaction.MessageID]; ok { //if there is a reaction to one of the messages that the bot sent for assigning a role
+		session.ChannelMessageSend(reaction.ChannelID, "Reaction found")
+		session.GuildMemberRoleAdd(reaction.GuildID, reaction.UserID, role.ID)
+	}
+}
+
+func react4roleReactionRemoveHandler(session *discordgo.Session, reaction *discordgo.MessageReactionRemove) {
+	if _, ok := roleAssigningMessages[reaction.MessageID]; ok { //if there is a reaction to one of the messages that the bot sent for assigning a role
+		session.ChannelMessageSend(reaction.ChannelID, "Reaction removed")
+		session.GuildMemberRoleRemove(reaction.GuildID, reaction.UserID, roleName)
+	}
+	session.GuildMemberRoleRemove(reaction.GuildID, reaction.UserID, role.ID)
+}
+
+var (
+	roleAssigningMessages = make(map[string][2]string) //the key is the message ID (which are strings), the value is the (role name, role ID) that message assigns
+	role *discordgo.Role
+	roleName string
+)
 
 func main() {
 	fmt.Println("Loading .env")
@@ -58,7 +109,8 @@ func main() {
 
 	// add your handlers (newMessage takes care of commands and deploys the correct response/response functions
 	client.AddHandler(newMessage)
-	client.AddHandler(react4rolesReactionHandler)
+	client.AddHandler(react4roleReactionAddHandler)
+	client.AddHandler(react4roleReactionRemoveHandler)
 
 	// open the client
 	err = client.Open()

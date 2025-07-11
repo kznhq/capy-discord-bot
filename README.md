@@ -7,6 +7,11 @@
 - runs
 - basic commands
     - !pet : nice way to thank capy
+    - !react4role <role name> : capy creates a role with the inputted name and anyone who reacts to it gets assigned it; removing your reaction removes you from the role
+        - the role is just made with permission to view channels, currently always is assigned the same color, might change to random or an inputted one in the future
+    - !deleteRole <role name> : capy deletes the given role; only works if capy was the one who created the role
+        - TODO: currently the roles capy made are stored in memory so if capy goes down (like when changes are pushed), it'll forget what roles it made before and will refuse to delete those. Currently working on storing the roles in a DB to fix this.
 
 ## Desired Future Functionality:
-- react to message for role assignment
+- chess bot
+- random fun facts
