@@ -16,4 +16,5 @@
 ## Desired Future Functionality:
 - random fun facts
 - "remind me" after a specified amount of time
+- !help to list commands
 - chess bot (maybe after completing other projects)
