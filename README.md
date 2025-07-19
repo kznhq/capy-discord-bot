@@ -14,5 +14,6 @@
         - TODO: currently uses global variables which probably isn't best. Should try using pipes and adding some thread safety maybe.
 
 ## Desired Future Functionality:
-- chess bot
 - random fun facts
+- "remind me" after a specified amount of time
+- chess bot (maybe after completing other projects)
