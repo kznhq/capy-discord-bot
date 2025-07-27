@@ -1,6 +1,6 @@
 # capy Discord bot
 - Discord bot using Go and the Discord API just for fun. 
-- Also hosting it currently on AWS EC2 instance (until the free trial ends, then Fly.io probably).
+- Also hosting it currently on AWS EC2 instance (until the free trial ends, then GCP Compute Engine probably).
 - Jenkins CI/CD also set up. 
 
 ## Current Functionality:
