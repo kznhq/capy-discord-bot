@@ -14,6 +14,7 @@
         - TODO: currently uses global variables which probably isn't best. Should try using pipes and adding some thread safety maybe.
     - !fact: random fun fact
         - TODO: add more APIs so we aren't just spamming one API, also gives wider fact bank
+        - TODO: some sort of fact check pipeline?
 
 ## Desired Future Functionality:
 - random fun facts

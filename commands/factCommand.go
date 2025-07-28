@@ -12,6 +12,7 @@ import (
 type Fact struct {
 	Id string `json:id`
 	Text string `json:text`
+	Source string `json:source`
 }
 
 func FactCommand(session *discordgo.Session, message *discordgo.MessageCreate) {
@@ -39,5 +40,5 @@ func FactCommand(session *discordgo.Session, message *discordgo.MessageCreate) {
 		session.ChannelMessageSend(message.ChannelID, "Error when unmarshaling response")
 	}
 
-	session.ChannelMessageSend(message.ChannelID, fact.Text)
+	session.ChannelMessageSend(message.ChannelID, fact.Text + "\n(I just got this from an API, can't verify if it's true)")
 }
