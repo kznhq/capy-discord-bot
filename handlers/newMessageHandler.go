@@ -31,7 +31,7 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 			if message.Content[0:11] != "!deleteRole" { break } //command appeared somewhere besides the front
 			commands.DeleteRole(session, message, message.Content)
 
-		case strings.Contains(message.Content, "!help"):
+		case message.Content == "!help":
 			msg := ""
 			for k, v := range utils.CommandMap {
 				msg = msg + "\n**" + k + "**: " + v
