@@ -4,7 +4,6 @@
 - Jenkins CI/CD also set up. 
 
 ## Current Functionality:
-- runs
 - basic commands
     - !pet : nice way to thank capy
     - !react4role <role name> : capy creates a role with the inputted name and anyone who reacts to it gets assigned it; removing your reaction removes you from the role
@@ -15,8 +14,8 @@
     - !fact: random fun fact
         - TODO: add more APIs so we aren't just spamming one API, also gives wider fact bank
         - TODO: some sort of fact check pipeline?
+    - !help: lists all the commands capy can do
 
 ## Desired Future Functionality:
 - "remind me" after a specified amount of time
-- !help to list commands
 - chess bot (maybe after completing other projects)
