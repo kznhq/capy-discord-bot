@@ -29,7 +29,7 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 
 		case strings.Contains(message.Content, "!deleteRole"):
 			if message.Content[0:11] != "!deleteRole" { break } //command appeared somewhere besides the front
-			commands.DeleteRole(session, message, message.Content)
+			commands.DeleteRoleCommand(session, message)
 
 		case message.Content == "!help":
 			msg := ""
@@ -37,6 +37,9 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 				msg = msg + "\n**" + k + "**: " + v
 			}
 			session.ChannelMessageSend(message.ChannelID, msg)
+
+		case message.Content == "!fact":
+			commands.FactCommand(session, message)	
 	}
 }
 

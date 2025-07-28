@@ -6,8 +6,8 @@ import (
 	"github.com/bwmarrin/discordgo"
 )
 
-func DeleteRole (session *discordgo.Session, message *discordgo.MessageCreate, content string) {
-	roleToDelete := content[12:] //content[11] is a space character
+func DeleteRoleCommand (session *discordgo.Session, message *discordgo.MessageCreate) {
+	roleToDelete := message.Content[12:] //content[11] is a space character
 	if roleToDelete == ""{
 		session.ChannelMessageSend(message.ChannelID, "Error: No role name detected. Usage: !deleteRole <roleName>")
 	}

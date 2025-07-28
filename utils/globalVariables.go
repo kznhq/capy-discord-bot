@@ -21,4 +21,5 @@ var CommandMap = map[string]string {
 	"!pet": "do it",
 	"!react4role <role name>": "create a role with the given name, react to the bot's message to get it or un-react to no longer be part of it",
 	"!deleteRole <role name>": "delete the role with the given name, only works for roles made by capy",
+	"!fact": "capy tells you a random fun fact",
 }
