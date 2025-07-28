@@ -12,6 +12,8 @@
     - !deleteRole <role name> : capy deletes the given role; only works if capy was the one who created the role
         - TODO: currently the roles capy made are stored in memory so if capy goes down (like when changes are pushed), it'll forget what roles it made before and will refuse to delete those. Currently working on storing the roles in a DB to fix this.
         - TODO: currently uses global variables which probably isn't best. Should try using pipes and adding some thread safety maybe.
+    - !fact: random fun fact
+        - TODO: add more APIs so we aren't just spamming one API, also gives wider fact bank
 
 ## Desired Future Functionality:
 - random fun facts
