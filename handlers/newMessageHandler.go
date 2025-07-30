@@ -10,7 +10,6 @@ import (
 )
 
 // reads all messages and dispatches the appropriate response 
-// hope this doesn't skyrocket my AWS bill D:
 func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCreate) {
 	// Ignore bot message
 	if message.Author.ID == session.State.User.ID {
@@ -20,15 +19,17 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 	// Respond to messages
 	switch {
 
-		case strings.Contains(message.Content, "!react4role"):
-			if message.Content[0:11] != "!react4role" { break } //command appeared somewhere besides the front
+		// check that the command was somewhere in the message AND the command is at the beginning of the message.
+		// I'm pretty sure trailing spaces are cut off before sending in Discord but here it ensures that 
+		// the user put something after the command that they want the role to be called instead of just
+		// "!react4role". Same logic for the others that use this
+		case strings.Contains(message.Content, "!react4role ") && message.Content[0:12] == "!react4role ":
 			commands.React4roleCommand(session, message)
 
 		case message.Content == "!pet" :
 			session.ChannelMessageSend(message.ChannelID, "*hapy capy noises*")
 
-		case strings.Contains(message.Content, "!deleteRole"):
-			if message.Content[0:11] != "!deleteRole" { break } //command appeared somewhere besides the front
+		case strings.Contains(message.Content, "!deleteRole ") && message.Content[0:12] == "!deleteRole ":
 			commands.DeleteRoleCommand(session, message)
 
 		case message.Content == "!help":
@@ -40,6 +41,8 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 
 		case message.Content == "!fact":
 			commands.FactCommand(session, message)	
+
+		case strings.Contains(message.Content, "!remindMe ") && message.Content[0:10] == "!remindMe ":
+			commands.RemindMeCommand(session, message)
 	}
 }
-

@@ -32,7 +32,7 @@ func main() {
 	// seeding for the random numbers used to make a random color for new roles
 	rand.Seed(time.Now().UnixNano())
 
-	// add your handlers (newMessage takes care of commands and calls the correct response function
+	// add your handlers (newMessage takes care of commands and calls the correct response function)
 	client.AddHandler(handlers.NewMessageHandler)
 	client.AddHandler(handlers.React4roleReactionAddHandler)
 	client.AddHandler(handlers.React4roleReactionRemoveHandler)
