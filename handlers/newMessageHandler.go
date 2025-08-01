@@ -49,5 +49,14 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 
 		case message.Content == "!rroa":
 			commands.R6RandomAttCommand(session, message)	
+
+		case message.Content == "!owt":
+			commands.OwtCommand(session, message)	
+
+		case message.Content == "!owd":
+			commands.OwdCommand(session, message)	
+
+		case message.Content == "!ows":
+			commands.OwsCommand(session, message)	
 	}
 }

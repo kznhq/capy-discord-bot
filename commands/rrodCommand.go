@@ -9,5 +9,5 @@ import (
 )
 
 func R6RandomDefCommand(session *discordgo.Session, message *discordgo.MessageCreate) {
-		session.ChannelMessageSend(message.ChannelID, "Random R6 defender: " + utils.DefendersR6[rand.Intn(len(utils.DefendersR6))])
+		session.ChannelMessageSend(message.ChannelID, "Random R6 defender: " + utils.R6Defenders[rand.Intn(len(utils.R6Defenders))])
 }
