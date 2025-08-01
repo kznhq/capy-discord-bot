@@ -37,12 +37,8 @@ func RemindMeCommand(session *discordgo.Session, message *discordgo.MessageCreat
 		}
 	}
 
-	// user can add a message with the reminder so we cut off the minutes reading at the space character if needed
-	if len(strings.Split(splits[2], " ")) > 1 {
-		go remind(session, message)
-	} else {
-		go remind(session, message)
-	}
+	// initiate go routine for timer
+	go remind(session, message)
 }
 
 // helper function called as goroutine that actually handles the reminding
@@ -52,15 +48,15 @@ func remind(session *discordgo.Session, message *discordgo.MessageCreate) {
 	hours := splits[1]
 	minutes := ""
 	msg := ""
-	if len(strings.Split(splits[2], " ")) > 1 { // if there's a message, take only the minutes part
+	if len(strings.Split(splits[2], " ")) > 1 { // if there's a message, separate the minutes from the message
 		minutes = strings.Split(splits[2], " ")[0]
-		msg = strings.Split(splits[2], " ")[1]
+		msg = splits[2][strings.Index(splits[2], " ") + 1:] // there is a space character after the minutes, everything after that is the message
 	} else {	// if no message, take from the second colon to the end (days:hours:minutes)
 		minutes = splits[2]
 	}
 
 	intDays, err := strconv.Atoi(days)
-	if err != nil { // I don't think these errors should trigger because we checked earlier, but Go wants me to
+	if err != nil { 
 		session.ChannelMessageSend(message.ChannelID, "Error: couldn't parse days from given input in timer goroutine")
 	}
 	intHours, err := strconv.Atoi(hours)
