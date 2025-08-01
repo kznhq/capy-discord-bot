@@ -18,7 +18,6 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 
 	// Respond to messages
 	switch {
-
 		// check that the command was somewhere in the message AND the command is at the beginning of the message.
 		// I'm pretty sure trailing spaces are cut off before sending in Discord but here it ensures that 
 		// the user put something after the command that they want the role to be called instead of just
@@ -44,5 +43,11 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 
 		case strings.Contains(message.Content, "!remindMe ") && message.Content[0:10] == "!remindMe ":
 			commands.RemindMeCommand(session, message)
+
+		case message.Content == "!r6randomdef":
+			commands.R6RandomDefCommand(session, message)	
+
+		case message.Content == "!r6randomatt":
+			commands.R6RandomAttCommand(session, message)	
 	}
 }

@@ -13,7 +13,7 @@ func React4roleCommand(session *discordgo.Session, message *discordgo.MessageCre
 	// get the name of the role
 	utils.RoleName = message.Content[12:] //message.Content[11] is the space character
 	if utils.RoleName == "" { // (Discord shaves off trailing spaces when sending a message)
-		session.ChannelMessageSend(message.ChannelID, "No role name detected. Usage: !react4role <roleName>")
+		session.ChannelMessageSend(message.ChannelID, "Error: No role name detected. Usage is '!react4role <roleName>'")
 	}
 
 	msg, _ := session.ChannelMessageSend(message.ChannelID, "React for role: " + utils.RoleName)

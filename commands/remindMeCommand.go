@@ -12,27 +12,27 @@ func RemindMeCommand(session *discordgo.Session, message *discordgo.MessageCreat
 	splits := strings.Split(message.Content[10:], ":")
 
 	if len(splits) > 3 {
-		session.ChannelMessageSend(message.ChannelID, "2Error: use for !remindMe is <days>:<hours>:<minutes>")
+		session.ChannelMessageSend(message.ChannelID, "Error: use is '!remindMe <days>:<hours>:<minutes>'")
 		return
 	}
 
 	// var days, hours, minutes string = "", "", ""
 	_, err := strconv.Atoi(splits[0])
 	if err != nil { 	// we check that we were given a proper number by trying to convert to an int
-		session.ChannelMessageSend(message.ChannelID, "2Error: failed to parse number of days from input, are you sure it's an integer?")
+		session.ChannelMessageSend(message.ChannelID, "Error: failed to parse number of days from input, are you sure it's an integer?")
 			return
 	}
 	if len(splits) > 1 {
 		_, err := strconv.Atoi(splits[1])
 		if err != nil {
-			session.ChannelMessageSend(message.ChannelID, "2Error: failed to parse number of hours from input, are you sure it's an integer?")
+			session.ChannelMessageSend(message.ChannelID, "Error: failed to parse number of hours from input, are you sure it's an integer?")
 			return
 		}
 	}
 	if len(splits) > 2 {
 		_, err := strconv.Atoi(strings.Split(splits[2], " ")[0])
 		if err != nil {
-			session.ChannelMessageSend(message.ChannelID, "2Error: failed to parse number of minutes from input, are you sure it's an integer?")
+			session.ChannelMessageSend(message.ChannelID, "Error: failed to parse number of minutes from input, are you sure it's an integer?")
 			return
 		}
 	}
@@ -61,18 +61,18 @@ func remind(session *discordgo.Session, message *discordgo.MessageCreate) {
 
 	intDays, err := strconv.Atoi(days)
 	if err != nil { // I don't think these errors should trigger because we checked earlier, but Go wants me to
-		session.ChannelMessageSend(message.ChannelID, "2Error: couldn't parse days from given input in timer goroutine")
+		session.ChannelMessageSend(message.ChannelID, "Error: couldn't parse days from given input in timer goroutine")
 	}
 	intHours, err := strconv.Atoi(hours)
 	if err != nil { 
-		session.ChannelMessageSend(message.ChannelID, "2Error: couldn't parse hours from given input in timer goroutine")
+		session.ChannelMessageSend(message.ChannelID, "Error: couldn't parse hours from given input in timer goroutine")
 	}
 
 	sleepHours := intDays * 24 + intHours // time.ParseDuration() doesn't parse days :(
 
 	duration, err := time.ParseDuration(strconv.Itoa(sleepHours) + "h" + minutes + "m")
 	if err != nil {
-		session.ChannelMessageSend(message.ChannelID, "2Error: couldn't parse time from given input in timer goroutine")
+		session.ChannelMessageSend(message.ChannelID, "Error: couldn't parse time from given input in timer goroutine")
 		return
 	}
 

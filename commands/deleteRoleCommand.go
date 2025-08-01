@@ -9,7 +9,7 @@ import (
 func DeleteRoleCommand (session *discordgo.Session, message *discordgo.MessageCreate) {
 	roleToDelete := message.Content[12:] //content[11] is a space character
 	if roleToDelete == ""{
-		session.ChannelMessageSend(message.ChannelID, "Error: No role name detected. Usage: !deleteRole <roleName>")
+		session.ChannelMessageSend(message.ChannelID, "Error: No role name detected. Usage is '!deleteRole <roleName>'")
 	}
 
 	for _, value := range utils.RoleAssigningMessages { // value is (role name, role id)
