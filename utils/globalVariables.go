@@ -23,8 +23,8 @@ var CommandMap = map[string]string {
 	"!deleteRole <role name>": "delete the role with the given name, only works for roles made by capy",
 	"!fact": "capy tells you a random fun fact. It pulls these from some APIs so I can't guarantee they're actually true",
 	"!remindMe <num days>:<num hours>:<num minutes> <message is optional>": "capy will remind you after the given amount of time by replying to your message with @ turned on and repeating the inputted message if there is one",
-	"!r6randomdef": "picks a random defender in Rainbow Six Siege so you don't have to say 'Guys who should I play?'",
-	"!r6randomatt": "picks a random attacker in Rainbow Six Siege so you don't have to say 'Guys who should I play?'",
+	"!rrod": "picks a random defender in Rainbow Six Siege so you don't have to say 'Guys who should I play?', command is named so it's easy to fast to type on mobile :)",
+	"!rroa": "picks a random attacker in Rainbow Six Siege so you don't have to say 'Guys who should I play?', command is named so it's easy to fast to type on mobile :)",
 }
 
 // list of all attacker operators in Rainbow Six Siege for !randomR6op command

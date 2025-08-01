@@ -44,10 +44,10 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 		case strings.Contains(message.Content, "!remindMe ") && message.Content[0:10] == "!remindMe ":
 			commands.RemindMeCommand(session, message)
 
-		case message.Content == "!r6randomdef":
+		case message.Content == "!rrod":
 			commands.R6RandomDefCommand(session, message)	
 
-		case message.Content == "!r6randomatt":
+		case message.Content == "!rroa":
 			commands.R6RandomAttCommand(session, message)	
 	}
 }
