@@ -33,8 +33,8 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 
 		case message.Content == "!help":
 			msg := ""
-			for k, v := range utils.CommandMap {
-				msg = msg + "\n**" + k + "**: " + v
+			for _, k := range utils.CommandNames {
+				msg = msg + "\n**" + k + "**: " + utils.CommandMap[k]
 			}
 			session.ChannelMessageSend(message.ChannelID, msg)
 

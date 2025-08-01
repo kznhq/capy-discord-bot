@@ -16,6 +16,19 @@ var Role *discordgo.Role
 // the name of the role being created in one call of !react4role
 var RoleName string
 
+var CommandNames = [10]string {
+	"!pet",
+	"!react4role <role name>",
+	"!deleteRole <role name>",
+	"!fact",
+	"!remindMe <num days>:<num hours>:<num minutes> <message is optional>",
+	"!rroa",
+	"!rrod",
+	"!owt",
+	"!ows",
+	"!owd",
+}
+
 // map of all the commands, used for the !help command to show all bot functionalities
 var CommandMap = map[string]string {
 	"!pet": "do it",
@@ -24,7 +37,7 @@ var CommandMap = map[string]string {
 	"!fact": "capy tells you a random fun fact. It pulls these from some APIs so I can't guarantee they're actually true",
 	"!remindMe <num days>:<num hours>:<num minutes> <message is optional>": "capy will remind you after the given amount of time by replying to your message with @ turned on and repeating the inputted message if there is one",
 	"!rrod": "picks a random defender from Rainbow Six Siege so you don't have to say 'Guys who should I play?', command is named so it's easy to fast to type on mobile :)",
-	"!rroa": "picks a random attacker from Rainbow Six Siege so you don't have to say 'Guys who should I play?', command is named so it's easy to fast to type on mobile :)",
+	"!rroa": "picks a random attacker from Rainbow Six Siege",
 	"!owt": "picks a random tank from Overwatch",
 	"!ows": "picks a random support from Overwatch",
 	"!owd": "picks a random DPS from Overwatch",
