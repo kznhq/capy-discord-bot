@@ -1,20 +1,17 @@
 package utils
 
 import (
-	"github.com/bwmarrin/discordgo"
+	"sync"
 )
 
-// stores the global variables used by different files
+// stores the global variables and constants used by different files
+
+// mutex used for role assignment since we use global variables as seen below
+var M sync.Mutex
 
 // map that stores the messages that are used to assign roles (the messages created by !react4role)
-//the key is the message ID (which are strings), the value is the (role name, role ID) that message assigns
-var RoleAssigningMessages = make(map[string][2]string) 
-
-// the role being created in one call of !react4role
-var Role *discordgo.Role
-
-// the name of the role being created in one call of !react4role
-var RoleName string
+//the key is the message ID (which are strings), the value is the (role name, role ID, guild ID) that message assigns
+var RoleAssigningMessages = make(map[string][3]string) 
 
 var CommandNames = [10]string {
 	"!pet",
