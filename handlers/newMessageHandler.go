@@ -41,6 +41,9 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 		case message.Content == "!fact":
 			commands.FactCommand(session, message)	
 
+		case message.Content == "!dadJoke":
+			commands.DadJokeCommand(session, message)	
+
 		case strings.Contains(message.Content, "!remindMe ") && message.Content[0:10] == "!remindMe ":
 			commands.RemindMeCommand(session, message)
 
