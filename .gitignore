@@ -4,5 +4,5 @@
 # my executable's name
 capyDiscordBot
 
-# secrets file for SSH'ing to the EC2 instance
+# used for SSH'ing to EC2
 *.pem

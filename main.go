@@ -34,6 +34,7 @@ func main() {
 
 	// add your handlers (newMessage takes care of commands and calls the correct response function)
 	client.AddHandler(handlers.NewMessageHandler)
+	client.AddHandler(handlers.StrawberryHandler)
 	client.AddHandler(handlers.React4roleReactionAddHandler)
 	client.AddHandler(handlers.React4roleReactionRemoveHandler)
 
