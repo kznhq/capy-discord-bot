@@ -13,7 +13,7 @@ var M sync.Mutex
 //the key is the message ID (which are strings), the value is the (role name, role ID, guild ID) that message assigns
 var RoleAssigningMessages = make(map[string][3]string) 
 
-var CommandNames = [10]string {
+var CommandNames = [11]string {
 	"!pet",
 	"!react4role <role name>",
 	"!deleteRole <role name>",
