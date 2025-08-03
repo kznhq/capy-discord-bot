@@ -5,7 +5,7 @@ import (
 	"os"
 	"math/rand"
 
-	"github.com/kznhq/utils"
+	"github.com/kznhq/capyDiscordBot/utils"
 
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
@@ -13,13 +13,15 @@ import (
 )
 
 // inside joke but basically when this one person sends a message, after a random number of messages this will send an image from an S3 bucket in reply to that person
+// TODO: IMPORTANT, YOU CAN DELETE THIS FILE IF YOU WANT TO RUN LOCALLY AND DON'T CARE FOR THIS FUNCTIONALITY, OTHERWISE IT'LL THROW ERRORS. READ README FOR MORE INFORMATION
 func StrawberryHandler(s *discordgo.Session, message *discordgo.MessageCreate) {
 	bucket := os.Getenv("BUCKET")
 	strawberry := os.Getenv("STRAWBERRY")
-	if message.Member != strawberry { // this only applies to one specific member
+	if message.Author.ID != strawberry { // the strawberry shenanigans only apply to one specific member
 		return
 	}
 
+	// we increment the counter of number of messages STRAWBERRY sent, if it hits the limit we continue otherwise return
 	utils.M.Lock()
 	utils.StrawberryCounter += 1
 	if utils.StrawberryCounter < utils.StrawberryLimit {

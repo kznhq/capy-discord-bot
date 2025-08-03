@@ -1,12 +1,19 @@
 # capy Discord bot
-- Discord bot using Go and the Discord API just for fun. 
-- Also hosting it currently on AWS EC2 instance (until the free trial ends, then GCP Compute Engine probably).
-- Jenkins CI/CD also set up. 
+- Discord bot using Go and the Discord API just for fun
+- Also hosting it currently on AWS EC2 instance (until the free trial ends, then GCP Compute Engine probably)
+- Jenkins CI/CD also set up
 
 ## IMPORTANT FOR LOCAL RUNNING:
 - If you want to run this locally, then go to main.go and remove the line adding the StrawberryHandler handler
 - Also delete the strawberryHandler.go file
 - These are just for an inside joke, you don't need them for core functionality of the bot
+- Basically when a specific person sends a certain number of messages, the bot will send an image from an S3 bucket in reply to that person's message
+- strawberryHandler.go looks for BUCKET and STRAWBERRY fields in the .env 
+    - BUCKET is the name of the S3 bucket holding the images
+    - STRAWBERRY is the Discord User ID of the person who will trigger this
+    - strawberryHandler.go will throw an error if you don't have these fields in your .env file so just delete strawberryHandler.go and remove StrawberryHandler from main.go
+- If you want this feature, then add the BUCKET and STRAWBERRY fields with your own S3 bucket name and the Discord User ID of the person to trigger it, respectively
+    - Again, if you don't want this feature, just delete strawberryHandler.go and remove the line adding StrawberryHandler in main.go
 
 ## Current Functionality:
 - basic commands

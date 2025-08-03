@@ -81,7 +81,7 @@ var OwSupports = [11]string {
 
 // counter used for sending an image in reply to a person after a random number of messages for the strawberry command
 // inside joke, used in the strawberry handler
-var StrawberryCount int
+var StrawberryCounter int
 
 // randomly assigned number of messages the person mentioned above needs to send before triggering the random image being sent
 // inside joke, also part of the strawberry handler
