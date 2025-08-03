@@ -28,4 +28,5 @@
     - !owd : picks a random DPS from Overwatch
 
 ## Desired Future Functionality:
+- slash commands (at some point, would be nice for autocomplete and look more official)
 - chess bot (low priority, maybe after completing other projects)
