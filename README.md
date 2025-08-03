@@ -3,6 +3,11 @@
 - Also hosting it currently on AWS EC2 instance (until the free trial ends, then GCP Compute Engine probably).
 - Jenkins CI/CD also set up. 
 
+## IMPORTANT FOR LOCAL RUNNING:
+- If you want to run this locally, then go to main.go and remove the line adding the StrawberryHandler handler
+- Also delete the strawberryHandler.go file
+- These are just for an inside joke, you don't need them for core functionality of the bot
+
 ## Current Functionality:
 - basic commands
     - !pet : nice way to thank capy
