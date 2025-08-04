@@ -16,7 +16,7 @@ import (
 // TODO: IMPORTANT, YOU CAN DELETE THIS FILE IF YOU WANT TO RUN LOCALLY AND DON'T CARE FOR THIS FUNCTIONALITY, OTHERWISE IT'LL THROW ERRORS. READ README FOR MORE INFORMATION
 func StrawberryHandler(s *discordgo.Session, message *discordgo.MessageCreate) {
 	bucket := os.Getenv("BUCKET")
-	strawberry := os.Getenv("STRAWBERRY")
+	// strawberry := os.Getenv("STRAWBERRY")
 	// if message.Author.ID != strawberry { // the strawberry shenanigans only apply to one specific member
 	// 	return
 	// }
