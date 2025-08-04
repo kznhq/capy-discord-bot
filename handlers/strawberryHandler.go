@@ -17,9 +17,9 @@ import (
 func StrawberryHandler(s *discordgo.Session, message *discordgo.MessageCreate) {
 	bucket := os.Getenv("BUCKET")
 	strawberry := os.Getenv("STRAWBERRY")
-	if message.Author.ID != strawberry { // the strawberry shenanigans only apply to one specific member
-		return
-	}
+	// if message.Author.ID != strawberry { // the strawberry shenanigans only apply to one specific member
+	// 	return
+	// }
 
 	// we increment the counter of number of messages STRAWBERRY sent, if it hits the limit we continue otherwise return
 	utils.M.Lock()
