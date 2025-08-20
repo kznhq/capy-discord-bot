@@ -13,6 +13,7 @@ var M sync.Mutex
 //the key is the message ID (which are strings), the value is the (role name, role ID, guild ID) that message assigns
 var RoleAssigningMessages = make(map[string][3]string) 
 
+// since maps are unordered in Go, we iterate over this list when the help command is called so we can control the order they are printed in
 var CommandNames = [11]string {
 	"!pet",
 	"!react4role <role name>",
@@ -20,8 +21,8 @@ var CommandNames = [11]string {
 	"!fact",
 	"!dadJoke",
 	"!remindMe <num days>:<num hours>:<num minutes> <message is optional>",
-	"!rrod",
-	"!rroa",
+	"!rd",
+	"!ra",
 	"!owt",
 	"!ows",
 	"!owd",
@@ -35,14 +36,14 @@ var CommandMap = map[string]string {
 	"!fact": "capy tells you a random fun fact. It pulls these from some APIs so I can't guarantee they're actually true",
 	"!dadJoke": "capy tells you a random dad joke",
 	"!remindMe <num days>:<num hours>:<num minutes> <message is optional>": "capy will remind you after the given amount of time by replying to your message with @ turned on and repeating the inputted message if there is one",
-	"!rrod": "picks a random defender from Rainbow Six Siege so you don't have to say 'Guys who should I play?', command is named so it's easy to fast to type on mobile :)",
-	"!rroa": "picks a random attacker from Rainbow Six Siege",
+	"!rd": "picks a random defender from Rainbow Six Siege so you don't have to say 'Guys who should I play?', command is named so it's easy to fast to type on mobile :)",
+	"!ra": "picks a random attacker from Rainbow Six Siege",
 	"!owt": "picks a random tank from Overwatch",
 	"!ows": "picks a random support from Overwatch",
 	"!owd": "picks a random DPS from Overwatch",
 }
 
-// list of all attacker operators in Rainbow Six Siege for !rroa command
+// list of all attacker operators in Rainbow Six Siege for !ra command
 var R6Attackers = [38]string {
 	"Rauora", "Striker", "Deimos", "Ram", "Brava", "Grim", "Sens", "Osa",
 	"Flores", "Zero", "Ace", "Iana", "Kali", "Amaru", "Nokk", "Gridlock",
@@ -51,7 +52,7 @@ var R6Attackers = [38]string {
 	"Montagne", "Twitch", "Blitz", "IQ", "Fuze", "Glaz",
 }
 
-// list of all defender operators in Rainbow Six Siege for !rrod command
+// list of all defender operators in Rainbow Six Siege for !rd command
 var R6Defenders = [37]string {
 	"Skopos", "Sentry", "Tubarao", "Fenrir", "Solis", "Azami", "Thorn", "Aruni",
 	"Thunderbird", "Melusi", "Oryx", "Wamai", "Goyo", "Warden", "Mozzie", "Kaid",
@@ -69,7 +70,7 @@ var OwTanks = [13]string {
 // list of all DPS in Overwatch for !owd
 var OwDps = [19]string {
 	"Ashe", "Bastion", "Cassidy", "Echo", "Freja", "Genji", "Hanzo", "Junkrat",
-	"Mei", "Pharah", "Reaper", "Sojourn", "Soldier 76", "Somba", "Symmetra", "Torbjorn",
+	"Mei", "Pharah", "Reaper", "Sojourn", "Soldier 76", "Sombra", "Symmetra", "Torbjorn",
 	"Tracer", "Venture", "Widowmaker",
 }
 

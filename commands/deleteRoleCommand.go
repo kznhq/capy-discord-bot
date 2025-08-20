@@ -20,8 +20,11 @@ func DeleteRoleCommand (session *discordgo.Session, message *discordgo.MessageCr
 		if value[0] == roleToDelete && value[2] == message.GuildID {	// if the role name and guild ID match
 			if session.GuildRoleDelete(message.GuildID, value[1]) != nil {
 				session.ChannelMessageSend(message.ChannelID, "Error: Failed to delete role " + roleToDelete)
+				utils.M.Unlock()
+				return
 			}
 			session.ChannelMessageSend(message.ChannelID, "Role " + roleToDelete + " deleted")
+			utils.M.Unlock()
 			return
 		}
 	}

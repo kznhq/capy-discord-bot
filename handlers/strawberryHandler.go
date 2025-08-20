@@ -16,10 +16,10 @@ import (
 // TODO: IMPORTANT, YOU CAN DELETE THIS FILE IF YOU WANT TO RUN LOCALLY AND DON'T CARE FOR THIS FUNCTIONALITY, OTHERWISE IT'LL THROW ERRORS. READ README FOR MORE INFORMATION
 func StrawberryHandler(s *discordgo.Session, message *discordgo.MessageCreate) {
 	bucket := os.Getenv("BUCKET")
-	// strawberry := os.Getenv("STRAWBERRY")
-	// if message.Author.ID != strawberry { // the strawberry shenanigans only apply to one specific member
-	// 	return
-	// }
+	strawberry := os.Getenv("STRAWBERRY")
+	if message.Author.ID != strawberry { // the strawberry shenanigans only apply to one specific member
+		return
+	}
 
 	// we increment the counter of number of messages STRAWBERRY sent, if it hits the limit we continue otherwise return
 	utils.M.Lock()
@@ -54,7 +54,7 @@ func StrawberryHandler(s *discordgo.Session, message *discordgo.MessageCreate) {
 		Name: key,
 		Reader: output.Body,
 	}
-	
+
 	// reply to the person's message with this image
 	s.ChannelMessageSendComplex(message.ChannelID, &discordgo.MessageSend{
 		Files: []*discordgo.File{file},
