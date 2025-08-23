@@ -9,12 +9,12 @@
 ## Current Functionality:
 - basic commands
     - !pet : nice way to thank capy
-    - !react4role <role name> : capy creates a role with the inputted name and anyone who reacts to it gets assigned it; removing your reaction removes you from the role
-    - !deleteRole <role name> : capy deletes the given role; only works if capy was the one who created the role
+    - !react4role (role name) : capy creates a role with the inputted name and anyone who reacts to it gets assigned it; removing your reaction removes you from the role
+    - !deleteRole (role name) : capy deletes the given role; only works if capy was the one who created the role
     - !fact : random fun fact
     - !dadJoke : random dad joke
     - !help : lists all the commands capy can do
-    - !remindMe <days>:<hours>:<minutes> <optional message> : capy reminds the user after the given amount of time by replying to the message that calls this command with the @ enabled and the inputted message if any
+    - !remindMe (days):(hours):(minutes) (optional message) : capy reminds the user after the given amount of time by replying to the message that calls this command with the @ enabled and the inputted message if any
     - !ra : picks a random attack operator from Rainbow Six Siege so you don't have to ask your squad who to play
     - !rd : picks a random defense operator from Rainbow Six Siege
     - !owt : picks a random tank from Overwatch
