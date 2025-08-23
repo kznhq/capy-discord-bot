@@ -4,7 +4,7 @@
 - Jenkins CI/CD also set up
 
 ## Wanna try capy out?
-[Use this link](https://discord.com/oauth2/authorize?client_id=1390895214096551967&permissions=1758097384131648&integration_type=0&scope=applications.commands+bot)
+[Use this link to add it to your server](https://discord.com/oauth2/authorize?client_id=1390895214096551967&permissions=1758097384131648&integration_type=0&scope=applications.commands+bot)
 
 ## Current Functionality:
 - basic commands
