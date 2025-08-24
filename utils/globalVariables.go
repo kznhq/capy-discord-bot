@@ -2,9 +2,24 @@ package utils
 
 import (
 	"sync"
+	"database/sql"
 )
 
 // stores the global variables and constants used by different files
+
+
+
+// .........................DATABASE..........................................
+
+// database handler for the database storing information used for react for role stuff
+var RoleDb *sql.DB 
+
+// SQL statement used for getting information needed to delete a role
+// this is a global variable so that we don't sql.Prepare() the same statement over and over when deleting a role
+var GetRoleStatement *sql.Stmt
+
+
+// ........................GENERAL............................................
 
 // mutex used for role assignment since we use global variables as seen below
 var M sync.Mutex

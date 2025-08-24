@@ -1,7 +1,9 @@
 # capy Discord bot
-- Discord bot using Go and the Discord API for fun and servers with friends
-- Also hosting it currently on AWS EC2 instance (until the free trial ends, then GCP Compute Engine probably)
+- Discord bot I made for use with friends and wanted to share
+- Currently hosting on AWS EC2 instance (until the free trial ends, then GCP Compute Engine probably)
 - Jenkins CI/CD also set up
+- MySQL database set up to store information used for creation/assigninment/deletion of roles
+    - MySQL over PostgreSQL since the information being stored is super structured and just simple insert, delete, select operations  
 
 ## Wanna try capy out?
 [Use this link to add it to your server](https://discord.com/oauth2/authorize?client_id=1390895214096551967&permissions=1758097384131648&integration_type=0&scope=applications.commands+bot)
