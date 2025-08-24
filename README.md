@@ -1,7 +1,7 @@
 # capy Discord bot
 - Discord bot I made for use with friends and wanted to share
 - Currently hosting on AWS EC2 instance (until the free trial ends, then GCP Compute Engine probably)
-- Jenkins CI/CD also set up
+- Jenkins CI/CD pipeline was also set up
 - MySQL database set up to store information used for creation/assigninment/deletion of roles
     - MySQL over PostgreSQL since the information being stored is super structured and just simple insert, delete, select operations  
 
