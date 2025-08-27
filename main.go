@@ -52,6 +52,11 @@ func initRoleDb() error {
 		return fmt.Errorf("Error when preparing SQL statement for deleting roles: %w", err)
 	}
 
+	utils.GetRoleFromMsgStatement, err = utils.RoleDb.Prepare("SELECT roleid FROM roleassigningmessagestable WHERE messageid = ?")
+	if err != nil {
+		return fmt.Errorf("Error when preparing SQL statement for deleting roles: %w", err)
+	}
+
 	return nil
 }
 

@@ -81,10 +81,27 @@ func React4roleCommand(session *discordgo.Session, message *discordgo.MessageCre
 	// message for this
 	msg, _ := session.ChannelMessageSend(message.ChannelID, "React for role: " + roleName)
 
-	// add the role to the db
-	_, err = utils.RoleDb.Exec("INSERT INTO roleassigningmessagestable (messageid, rolename, roleid, guildid) VALUES (?, ?, ?, ?)", msg.ID, role.Name, role.ID, message.GuildID)
-	if err != nil {
-		fmt.Println(err)
-		return
+	if newRole {
+		// add the role to the db
+		_, err = utils.RoleDb.Exec("INSERT INTO roleassigningmessagestable (messageid, rolename, roleid, guildid) VALUES (?, ?, ?, ?)", msg.ID, role.Name, role.ID, message.GuildID)
+		if err != nil {
+			session.ChannelMessageSend(message.ChannelID, "Error: Failed to add role " + roleName + " to database")
+			fmt.Println(err)
+			return
+		}
+	} else {
+		var existingRoleId int64
+		row := utils.GetRoleStatement.QueryRow(roleName, message.GuildID)
+		err = row.Scan(&existingRoleId)
+		if err != nil {
+			session.ChannelMessageSend(message.ChannelID, "Error: failed to get role ID of existing role from database")
+			return
+		}
+		_, err = utils.RoleDb.Exec("INSERT INTO roleassigningmessagestable (messageid, rolename, roleid, guildid) VALUES (?, ?, ?, ?)", msg.ID, roleName, existingRoleId, message.GuildID)
+		if err != nil {
+			session.ChannelMessageSend(message.ChannelID, "Error: Failed to add role " + roleName + " to database")
+			fmt.Println(err)
+			return
+		}
 	}
 }

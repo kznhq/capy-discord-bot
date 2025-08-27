@@ -18,6 +18,10 @@ var RoleDb *sql.DB
 // this is a global variable so that we don't sql.Prepare() the same statement over and over when deleting a role
 var GetRoleStatement *sql.Stmt
 
+// SQL statement to get role ID from the message ID of the bot's message that is
+// reacted to in order to assign the user a role. This is used in order to 
+// assign a user a role when they react to the appropriate message from the bot
+var GetRoleFromMsgStatement *sql.Stmt
 
 // ........................GENERAL............................................
 

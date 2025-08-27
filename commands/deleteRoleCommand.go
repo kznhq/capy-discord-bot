@@ -2,7 +2,6 @@ package commands
 
 import (
 	"fmt"
-	"strconv"
 
 	"github.com/kznhq/capyDiscordBot/utils"
 
@@ -18,7 +17,7 @@ func DeleteRoleCommand(session *discordgo.Session, message *discordgo.MessageCre
 	}
 
 	// first we query the db to find the role ID
-	var roleId int64
+	var roleId string
 	row := utils.GetRoleStatement.QueryRow(roleToDelete, message.GuildID)
 	err := row.Scan(&roleId)
 	if err != nil {
@@ -27,7 +26,7 @@ func DeleteRoleCommand(session *discordgo.Session, message *discordgo.MessageCre
 	}
 
 	// delete the role from the server
-	if session.GuildRoleDelete(message.GuildID, strconv.FormatInt(roleId, 10)) != nil {
+	if session.GuildRoleDelete(message.GuildID, roleId) != nil {
 		session.ChannelMessageSend(message.ChannelID, "Error: Failed to delete role " + roleToDelete + " from server. Try again")
 		return // if we don't delete from the server we don't want to delete from the database because that'd be mismatched records
 	}
