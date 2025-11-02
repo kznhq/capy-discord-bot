@@ -28,7 +28,6 @@ func initRoleDb() error {
 	dbAddr := os.Getenv("DB_ADDR")
 	dbName := os.Getenv("DB_NAME")
 	
-
 	cfg := mysql.Config{
 		User:   dbUser,
 		Passwd: dbPasswd,

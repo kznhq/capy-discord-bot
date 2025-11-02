@@ -2,7 +2,7 @@
 .git
 
 # my executable's name
-capyDiscordBot
+capy
 
 # used for SSH'ing to EC2
 *.pem

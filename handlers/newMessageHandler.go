@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"strings"
+	"math/rand"
 
 	"github.com/kznhq/capyDiscordBot/commands"
 	"github.com/kznhq/capyDiscordBot/utils"
@@ -61,5 +62,17 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 
 		case message.Content == "!ows":
 			commands.OwsCommand(session, message)	
+
+		case strings.Contains(strings.ToLower(message.Content), "i'm ") && strings.ToLower(message.Content[0:4]) == "i'm ": // classic dad joke right here
+			num := rand.Intn(7)
+			if num == 1 {	// make it a random chance that capy replies so it doesn't get too annoying
+				session.ChannelMessageSend(message.ChannelID, "Hi" + message.Content[3:] + ", I'm capy!")
+			}
+
+		case strings.Contains(message.Content, "I am ") && message.Content[0:5] == "I am ":
+			num := rand.Intn(7)
+			if num == 1 {
+				session.ChannelMessageSend(message.ChannelID, "Hi" + message.Content[4:] + ", I'm capy!")
+			}
 	}
 }

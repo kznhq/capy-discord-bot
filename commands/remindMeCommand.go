@@ -11,10 +11,10 @@ import (
 func RemindMeCommand(session *discordgo.Session, message *discordgo.MessageCreate) {
 	splits := strings.Split(message.Content[10:], ":")
 
-	if len(splits) > 3 {
-		session.ChannelMessageSend(message.ChannelID, "Error: use is '!remindMe <days>:<hours>:<minutes>'")
-		return
-	}
+	// if len(splits) > 3 {
+	// 	session.ChannelMessageSend(message.ChannelID, "Error: use is '!remindMe <days>:<hours>:<minutes>'")
+	// 	return
+	// }
 
 	// var days, hours, minutes string = "", "", ""
 	_, err := strconv.Atoi(splits[0])
@@ -50,7 +50,23 @@ func remind(session *discordgo.Session, message *discordgo.MessageCreate) {
 	msg := ""
 	if len(strings.Split(splits[2], " ")) > 1 { // if there's a message, separate the minutes from the message
 		minutes = strings.Split(splits[2], " ")[0]
-		msg = splits[2][strings.Index(splits[2], " ") + 1:] // there is a space character after the minutes, everything after that is the message
+		firstSpace := strings.Index(message.Content, " ")
+		if firstSpace == -1 {
+			// Invalid format
+			return
+		}
+
+		secondSpace := strings.Index(message.Content[firstSpace+1:], " ")
+		if secondSpace == -1 {
+			// Invalid format
+			return
+		}
+
+		// Calculate start of the reminder text
+		reminderStart := firstSpace + 1 + secondSpace + 1
+
+		// Extract everything after that as the reminder text
+		msg = message.Content[reminderStart:]
 	} else {	// if no message, take from the second colon to the end (days:hours:minutes)
 		minutes = splits[2]
 	}

@@ -55,7 +55,7 @@ var CommandMap = map[string]string {
 	"!fact": "capy tells you a random fun fact. It pulls these from some APIs so I can't guarantee they're actually true",
 	"!dadJoke": "capy tells you a random dad joke",
 	"!remindMe <num days>:<num hours>:<num minutes> <message is optional>": "capy will remind you after the given amount of time by replying to your message with @ turned on and repeating the inputted message if there is one",
-	"!rd": "picks a random defender from Rainbow Six Siege so you don't have to say 'Guys who should I play?', command is named so it's easy to fast to type on mobile :)",
+	"!rd": "picks a random defender from Rainbow Six Siege so you don't have to say 'Guys who should I play?', command is named so it's easy to type fast on mobile :)",
 	"!ra": "picks a random attacker from Rainbow Six Siege",
 	"!owt": "picks a random tank from Overwatch",
 	"!ows": "picks a random support from Overwatch",
@@ -72,12 +72,12 @@ var R6Attackers = [38]string {
 }
 
 // list of all defender operators in Rainbow Six Siege for !rd command
-var R6Defenders = [37]string {
+var R6Defenders = [38]string {
 	"Skopos", "Sentry", "Tubarao", "Fenrir", "Solis", "Azami", "Thorn", "Aruni",
 	"Thunderbird", "Melusi", "Oryx", "Wamai", "Goyo", "Warden", "Mozzie", "Kaid",
 	"Clash", "Maestro", "Alibi", "Vigil", "Ela", "Lesion", "Mira", "Echo",
 	"Caveira", "Valkyrie", "Frost", "Mute", "Smoke", "Castle", "Pulse", "Doc",
-	"Rook", "Jager", "Bandit", "Tachanka", "Kapkan",
+	"Rook", "Jager", "Bandit", "Tachanka", "Kapkan", "Denari",
 }
 
 // list of all tanks in Overwatch for !owt
