@@ -64,21 +64,33 @@ func NewMessageHandler(session *discordgo.Session, message *discordgo.MessageCre
 			commands.OwsCommand(session, message)	
 
 		case strings.Contains(strings.ToLower(message.Content), "i'm ") && strings.ToLower(message.Content[0:4]) == "i'm ": // classic dad joke right here
-			num := rand.Intn(3)
-			if num == 1 {	// make it a random chance that capy replies so it doesn't get too annoying
-				session.ChannelMessageSend(message.ChannelID, "Hi" + message.Content[3:] + ", I'm capy!")
+			if strings.Contains(strings.ToLower(message.Content), "i'm capy") && strings.ToLower(message.Content[0:8]) == "i'm capy" {
+				session.ChannelMessageSend(message.ChannelID, "No you're not! I am! :angry:")
+			} else {
+				num := rand.Intn(3)
+				if num == 1 {	// make it a random chance that capy replies so it doesn't get too annoying
+					session.ChannelMessageSend(message.ChannelID, "Hi" + message.Content[3:] + ", I'm capy!")
+				}
 			}
 
 		case strings.Contains(strings.ToLower(message.Content), "i am ") && strings.ToLower(message.Content[0:5]) == "i am ":
-			num := rand.Intn(3)
-			if num == 1 {
-				session.ChannelMessageSend(message.ChannelID, "Hi" + message.Content[4:] + ", I'm capy!")
+			if strings.Contains(strings.ToLower(message.Content), "i am capy") && strings.ToLower(message.Content[0:9]) == "i am capy" {
+				session.ChannelMessageSend(message.ChannelID, "No you're not! I am! :angry:")
+			} else {
+				num := rand.Intn(3)
+				if num == 1 {
+					session.ChannelMessageSend(message.ChannelID, "Hi" + message.Content[4:] + ", I'm capy!")
+				}
 			}
 
 		case strings.Contains(strings.ToLower(message.Content), "im ") && strings.ToLower(message.Content[0:3]) == "im ":
-			num := rand.Intn(3)
-			if num == 1 {
-				session.ChannelMessageSend(message.ChannelID, "Hi" + message.Content[2:] + ", I'm capy!")
+			if strings.Contains(strings.ToLower(message.Content), "im capy") && strings.ToLower(message.Content[0:7]) == "im capy" {
+				session.ChannelMessageSend(message.ChannelID, "No you're not! I am! :angry:")
+			} else {
+				num := rand.Intn(3)
+				if num == 1 {
+					session.ChannelMessageSend(message.ChannelID, "Hi" + message.Content[2:] + ", I'm capy!")
+				}
 			}
 	}
 }
